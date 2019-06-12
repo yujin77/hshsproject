@@ -1,0 +1,79 @@
+f = open('과제연구 계획서 방지연', encoding = 'utf8')
+for row in f :
+    print(row.strip())
+f.close()
+---------------------------
+
+f = open('test.txt', 'r')
+text = f.read()
+f.close()
+
+words = text.replace('.', ' ').replace(',', ' ').split()
+#print(words)
+
+dic = dict()
+for word in words:
+    if word in dic:
+        dic[word] = dic[word]+1
+    else:
+        dic[word] = 1
+#print(dic)
+
+sorted_x = sorted(dic, key=dic.get, reverse=True)
+#print(sorted_x)
+sorted_list = [(key, dic[key]) for key in sorted_x]
+
+#print(sorted_list)
+for n in range(1000):
+    i, j = sorted_list[n]
+    print(i, j)
+--------------------------
+
+f = open('과제연구 계획서 방지연', encoding = 'utf8')
+
+from collections import Counter
+wordDict = Counter()
+
+sentences = f.readlines()
+
+for sentence in sentences: #한 문장씩
+    	for word in sentence.split(): #한 문장에 들어있는 한 단어씩
+       		wordDict[word] += 1 #Counter에 count를 1씩 증가시킨다.
+        
+for word, freq in wordDict.most_common(20): # 출력할 단어 개수: 20개 
+    	print (word, freq)
+------------------------------
+
+f = open('과제연구 계획서 방지연', encoding = 'utf8')
+
+from collections import Counter
+wordDict = Counter()
+
+sentences = f.readlines()
+
+for sentence in sentences: #한 문장씩
+    for word in sentence.split(): #한 문장에 들어있는 한 단어씩
+        wordDict[word] += 1 #Counter에 count를 1씩 증가시킨다.        
+        
+word_list = []
+freq_list = []
+for word, freq in wordDict.most_common(20):
+    print (word, freq)
+    word_list.append(word)
+    freq_list.append(freq)
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(30,5))
+plt.rc('font', family = 'Malgun Gothic')
+n = len(word_list)
+ind = np.arange(n)
+plt.bar(ind, freq_list, label='frequency')
+plt.xticks(ind, word_list)
+plt.xlabel('words')
+plt.ylabel('count')
+plt.title('words frequency')
+plt.legend()
+plt.show()
+---------------------
