@@ -1,0 +1,45 @@
+import csv
+s = open("석유진 과제연구 계획서 수정.csv")
+p = open("생물과 실험기구.csv")
+a = csv.reader(s)
+b = csv.reader(p)
+과제연구계획서 = []
+학번 = []
+분야 = []
+탐구주제 = []
+탐구설계 = []
+for raw in a :
+    과제연구계획서.append(raw[0])
+학번.append(과제연구계획서[0])
+분야.append(과제연구계획서[1])
+탐구주제.append(과제연구계획서[2])
+탐구설계.append(과제연구계획서[3])
+
+필요 = []
+생물과 = []
+정보 = []
+불필요 = []
+위치 = []
+장소 = []
+for raw in b :
+    정보.append(raw[1])
+    생물과.append(raw[0])
+    위치.append(raw[2])
+키워드 = []
+print(위치)
+for i in range(0,len(정보)):
+    n = 정보[i].split(',')
+    키워드.append(n)
+for j in range(0,len(키워드)) :
+    txt = 탐구설계[0]
+    for k in range(0,len(키워드)):
+        key = 키워드[j][k]
+        if key in txt :
+            필요.append(생물과[i])
+            장소 = 위치[j]
+            print(학번,'의',분야,'과제연구에 필요한',생물과[j],'은(는)',분야,'의',장소,'에 있습니다. 이용 방법은 생물과 게시판을 참고해주세요')
+            break
+        else :
+            불필요.append(생물과[i])
+            break
+print('불필요한 실험기구는 다음과 같습니다 ::',불필요)
